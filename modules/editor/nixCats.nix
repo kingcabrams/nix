@@ -1,8 +1,4 @@
-{ config
-, lib
-, inputs
-, ...
-}:
+{ config , lib , inputs , ... }:
 let
   utils = inputs.nixCats.utils;
 in
@@ -37,14 +33,7 @@ in
       # they refer to how multiple categoryDefinitions get merged together by the module.
       # for useage of this section, refer to :h nixCats.flake.outputs.categories
       categoryDefinitions.replace =
-        { pkgs
-        , settings
-        , categories
-        , extra
-        , name
-        , mkPlugin
-        , ...
-        } @ packageDef: {
+        { pkgs , settings , categories , extra , name , mkPlugin , ... } @ packageDef: {
           # to define and use a new category, simply add a new list to a set here,
           # and later, you will include categoryname = true; in the set you
           # provide when you build the package using this builder function.
@@ -77,6 +66,7 @@ in
               lze
               lzextras
               vim-sleuth
+              gruvbox
               onedark-nvim
             ];
           };

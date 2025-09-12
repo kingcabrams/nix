@@ -77,6 +77,14 @@ vim.diagnostic.config({
 
 require("lze").load({
 	{
+	"gruvbox",
+	enabled = true,
+	lazy = false,
+	after = function(plugin)
+		vim.cmd('colorscheme gruvbox')
+	end
+	},
+	{
 		"fzf-lua",
 		enabled = nixCats("general") or false,
 		lazy = false,
