@@ -2,7 +2,6 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -36,6 +35,12 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  programs.steam = {
+	enable = true;
+	remotePlay.openFirewall = true;
+	dedicatedServer.openFirewall = true;
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -56,7 +61,6 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
   };
 
   programs.zsh.enable = true;

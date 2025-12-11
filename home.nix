@@ -1,11 +1,21 @@
 { inputs, pkgs, ... }:
+let
+neovim-master = pkgs.neovim-unwrapped.overrideAttrs (old: {
+    version = "0.12.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "neovim";
+      repo  = "neovim";
+      rev   = "master"; 
+      hash  = "sha256-mbC4oUTvSPc93C/ImbIjzTuu57RP0ayU/y00dxgN78s";
+    };
+  });
+in
 {
   home.username = "cabrams";
   home.homeDirectory = "/home/cabrams";
   home.stateVersion = "25.05";
 
   imports = [
-    ./modules/editor/nixCats.nix
   ];
 
   nix = {
@@ -16,53 +26,68 @@
 
   programs = {
     home-manager.enable = true;
-    zellij.enable = true;
-    helix.enable = true;
+	helix.enable = true;
+
+    zsh = {
+      enable = true;
+      defaultKeymap = "emacs";
+      enableCompletion = true;
+    };
+
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     direnv = {
       enable = true;
-      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
+
     fzf = {
       enable = true;
       enableZshIntegration = true;
     };
-    zsh = {
-      enable = true;
-    };
+
     starship = {
       enable = true;
       enableZshIntegration = true;
     };
+
     yazi = {
       enable = true;
       enableZshIntegration = true;
     };
+
     git = {
       enable = true;
       userName = "Caleb Abrams";
       userEmail = "abramscma@gmail.com";
       extraConfig = {
         pull.rebase = true;
-        core.editor = "vim";
+        core.editor = "nvim";
       };
     };
   };
 
   home.packages = with pkgs;
     [
-      gcc13
+      git
       nixd
       ripgrep
       vesktop
-      wezterm
       firefox
-      man-pages
+      alacritty
       nixpkgs-fmt
+	  libreoffice
       wl-clipboard
+      neovim-master
+      nerd-fonts.iosevka
+      nerd-fonts.jetbrains-mono
     ];
 
   home.sessionVariables = {
-    EDITOR = "vim";
-    VISUAL = "vim";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 }
