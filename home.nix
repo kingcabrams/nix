@@ -127,10 +127,9 @@ when = ''''test "$IN_NIX_SHELL" = ""''''
       bat
       procs
       direnv
-      nushell
+      zellij
       ripgrep
       vesktop
-      firefox
       man-pages
       alacritty
       libreoffice
