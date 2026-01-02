@@ -16,35 +16,6 @@
   programs = {
     home-manager.enable = true;
 
-    eza = {
-        enable = true;
-        enableFishIntegration = true;
-        colors = "always";
-        icons = "always";
-        extraOptions = [
-            "--group-directories-first"
-        ];
-    };
-
-    helix = {
-      enable = true;
-      extraPackages = with pkgs; [
-        nixd
-    		nixpkgs-fmt
-
-        rust-analyzer
-    		rustfmt
-
-        lua-language-server
-    		stylua
-
-    		pyright
-    		ruff
-
-    		clang-tools
-      ];
-    };
-
     bash.enable = true;
 
     neovim = {
@@ -58,11 +29,10 @@
         fzf-lua
         oil-nvim
         gruber-darker-nvim
-        tokyonight-nvim
-    		nvim-lspconfig
-    		conform-nvim
-    		lazydev-nvim
-    		tabout-nvim
+	nvim-lspconfig
+	conform-nvim
+	lazydev-nvim
+	tabout-nvim
         (nvim-treesitter.withPlugins (p: [
           p.tree-sitter-rust
           p.tree-sitter-lua
@@ -75,18 +45,18 @@
 
       extraPackages = with pkgs; [
         nixd
-    		nixpkgs-fmt
+	nixpkgs-fmt
 
         rust-analyzer
-    		rustfmt
+	rustfmt
 
         lua-language-server
-    		stylua
+	stylua
 
-    		pyright
-    		ruff
+	pyright
+	ruff
 
-    		clang-tools
+	clang-tools
       ];
     };
 
@@ -131,17 +101,17 @@
       gcc
       git
       bat
-      kitty
       procs
       direnv
       nushell
       ripgrep
       vesktop
       firefox
-	  man-pages
+      man-pages
+      alacritty
       libreoffice
       wl-clipboard
-	  man-pages-posix
+      man-pages-posix
       nerd-fonts.iosevka
     ];
 

@@ -39,6 +39,29 @@
           ];
         };
 
+        home-desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            ./configuration.nix
+            ./hosts/home-desktop/hardware-configuration.nix
+
+            ({ pkgs, ... }: {
+              nix.package = pkgs.nixVersions.latest;
+            })
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.cabrams = import ./home.nix;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+              };
+            }
+          ];
+        };
+
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
 
