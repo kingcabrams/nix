@@ -1,15 +1,4 @@
-{ inputs, pkgs, ... }:
-let
-neovim-master = pkgs.neovim-unwrapped.overrideAttrs (old: {
-    version = "0.12.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "neovim";
-      repo  = "neovim";
-      rev   = "master"; 
-      hash  = "sha256-mbC4oUTvSPc93C/ImbIjzTuu57RP0ayU/y00dxgN78s";
-    };
-  });
-in
+{ pkgs, ... }:
 {
   home.username = "cabrams";
   home.homeDirectory = "/home/cabrams";
@@ -26,64 +15,134 @@ in
 
   programs = {
     home-manager.enable = true;
-	helix.enable = true;
 
-    zsh = {
+    eza = {
+        enable = true;
+        enableFishIntegration = true;
+        colors = "always";
+        icons = "always";
+        extraOptions = [
+            "--group-directories-first"
+        ];
+    };
+
+    helix = {
       enable = true;
-      defaultKeymap = "emacs";
-      enableCompletion = true;
+      extraPackages = with pkgs; [
+        nixd
+    		nixpkgs-fmt
+
+        rust-analyzer
+    		rustfmt
+
+        lua-language-server
+    		stylua
+
+    		pyright
+    		ruff
+
+    		clang-tools
+      ];
+    };
+
+    bash.enable = true;
+
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+
+      withPython3 = true;
+
+      plugins = with pkgs.vimPlugins; [
+        fzf-lua
+        oil-nvim
+        gruber-darker-nvim
+        tokyonight-nvim
+    		nvim-lspconfig
+    		conform-nvim
+    		lazydev-nvim
+    		tabout-nvim
+        (nvim-treesitter.withPlugins (p: [
+          p.tree-sitter-rust
+          p.tree-sitter-lua
+          p.tree-sitter-nix
+          p.tree-sitter-python
+          p.tree-sitter-c
+          p.tree-sitter-cpp
+        ]))
+      ];
+
+      extraPackages = with pkgs; [
+        nixd
+    		nixpkgs-fmt
+
+        rust-analyzer
+    		rustfmt
+
+        lua-language-server
+    		stylua
+
+    		pyright
+    		ruff
+
+    		clang-tools
+      ];
+    };
+
+    starship = {
+        enable = true;
+        enableFishIntegration = true;
     };
 
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
+      enableFishIntegration = true;
     };
 
     direnv = {
       enable = true;
-      enableZshIntegration = true;
     };
 
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    starship = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    fish.enable = true;
 
     yazi = {
       enable = true;
-      enableZshIntegration = true;
+      enableFishIntegration = true;
     };
 
     git = {
       enable = true;
-      userName = "Caleb Abrams";
-      userEmail = "abramscma@gmail.com";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Caleb Abrams";
+          email = "abramscma@gmail.com";
+        };
         pull.rebase = true;
         core.editor = "nvim";
       };
     };
   };
 
+
   home.packages = with pkgs;
     [
+      fd
+      gcc
       git
-      nixd
+      bat
+      kitty
+      procs
+      direnv
+      nushell
       ripgrep
       vesktop
       firefox
-      alacritty
-      nixpkgs-fmt
-	  libreoffice
+	  man-pages
+      libreoffice
       wl-clipboard
-      neovim-master
+	  man-pages-posix
       nerd-fonts.iosevka
-      nerd-fonts.jetbrains-mono
     ];
 
   home.sessionVariables = {

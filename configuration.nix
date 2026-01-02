@@ -63,24 +63,31 @@
     #jack.enable = true;
   };
 
-  programs.zsh.enable = true;
+  documentation.dev.enable = true;
 
   users.users.cabrams = {
     isNormalUser = true;
     description = "Caleb Abrams";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     packages = with pkgs; [
       kdePackages.kate
     ];
   };
 
+  programs.fish.enable = true;
   programs.firefox.enable = true;
+
+  documentation.man.generateCaches = false;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-   vim
+	vim
+	liburing
+	man-pages
+	linux-manual
+	man-pages-posix
   ];
 
   system.stateVersion = "25.05"; 
