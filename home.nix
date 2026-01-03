@@ -61,6 +61,7 @@
       vesktop
       man-pages
       alacritty
+      fastfetch
       obs-studio
       libreoffice
       wl-clipboard
