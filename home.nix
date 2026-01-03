@@ -2,9 +2,12 @@
 {
   home.username = "cabrams";
   home.homeDirectory = "/home/cabrams";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   imports = [
+    ./modules/nvim
+    ./modules/zellij
+    ./modules/starship
   ];
 
   nix = {
@@ -13,81 +16,8 @@
     };
   };
 
-  home.file.".config/starship.toml".text = ''
-# ~/.config/starship.toml
-format = """
-\\[cabrams@''${custom.hostname}$nix_shell\
-( $directory)\
-\\]\\$ 
-"""
-add_newline = false
-
-[directory]
-format = '[$path]($style)[$read_only]($read_only_style)'
-style = 'bold white'
-read_only = ' (RO)'
-
-[nix_shell]
-format = '[nixos]($style)'
-style = 'bold blue'
-
-[custom.hostname]
-format = '[nixos]($style)'
-style = 'bold red'
-when = ''''test "$IN_NIX_SHELL" = ""''''
-'';
-
   programs = {
     home-manager.enable = true;
-
-    bash.enable = true;
-
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-
-      withPython3 = true;
-
-      plugins = with pkgs.vimPlugins; [
-        fzf-lua
-        oil-nvim
-        gruber-darker-nvim
-	nvim-lspconfig
-	conform-nvim
-	lazydev-nvim
-	tabout-nvim
-        (nvim-treesitter.withPlugins (p: [
-          p.tree-sitter-rust
-          p.tree-sitter-lua
-          p.tree-sitter-nix
-          p.tree-sitter-python
-          p.tree-sitter-c
-          p.tree-sitter-cpp
-        ]))
-      ];
-
-      extraPackages = with pkgs; [
-        nixd
-	nixpkgs-fmt
-
-        rust-analyzer
-	rustfmt
-
-        lua-language-server
-	stylua
-
-	pyright
-	ruff
-
-	clang-tools
-      ];
-    };
-
-    starship = {
-        enable = true;
-        enableFishIntegration = true;
-    };
 
     zoxide = {
       enable = true;
@@ -118,20 +48,20 @@ when = ''''test "$IN_NIX_SHELL" = ""''''
     };
   };
 
-
   home.packages = with pkgs;
     [
       fd
       gcc
       git
+      mpv
       bat
       procs
       direnv
-      zellij
       ripgrep
       vesktop
       man-pages
       alacritty
+      obs-studio
       libreoffice
       wl-clipboard
       man-pages-posix

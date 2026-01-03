@@ -1,0 +1,22 @@
+# ~/.config/starship.toml
+
+format = """
+\\[cabrams@${custom.hostname}$nix_shell\
+( $directory)\
+\\]\\$ 
+"""
+add_newline = false
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+style = 'bold white'
+read_only = ' (RO)'
+
+[nix_shell]
+format = '[nixos]($style)'
+style = 'bold blue'
+
+[custom.hostname]
+format = '[nixos]($style)'
+style = 'bold red'
+when = ''' test "$IN_NIX_SHELL" = "" '''

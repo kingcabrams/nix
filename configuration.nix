@@ -1,13 +1,13 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
-    ];
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; 
+  networking.hostName = "nixos";
 
   networking.networkmanager.enable = true;
   hardware.bluetooth = {
@@ -36,9 +36,9 @@
   services.desktopManager.plasma6.enable = true;
 
   programs.steam = {
-	enable = true;
-	remotePlay.openFirewall = true;
-	dedicatedServer.openFirewall = true;
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
 
   # Configure keymap in X11
@@ -68,7 +68,10 @@
   users.users.cabrams = {
     isNormalUser = true;
     description = "Caleb Abrams";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.fish;
     packages = with pkgs; [
       kdePackages.kate
@@ -83,13 +86,13 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-	vim
-	liburing
-	man-pages
-	linux-manual
-	man-pages-posix
+    vim
+    liburing
+    man-pages
+    linux-manual
+    man-pages-posix
   ];
 
-  system.stateVersion = "25.05"; 
+  system.stateVersion = "25.05";
 
 }
