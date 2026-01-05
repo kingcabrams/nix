@@ -18,6 +18,8 @@
 
   programs = {
     home-manager.enable = true;
+    emacs.enable = true;
+    helix.enable = true;
 
     zoxide = {
       enable = true;
@@ -57,8 +59,10 @@
       bat
       procs
       direnv
+      ghostty
       ripgrep
       vesktop
+      alacritty
       man-pages
       alacritty
       fastfetch

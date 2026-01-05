@@ -18,7 +18,7 @@ require("conform").setup({
 
 require("lazydev").setup()
 
-vim.keymap.set("n", "<leader>f", function()
+vim.keymap.set("n", "<leader>bf", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end)
 

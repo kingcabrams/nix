@@ -10,13 +10,14 @@
     withPython3 = true;
 
     plugins = with pkgs.vimPlugins; [
+      zenburn
       fzf-lua
       oil-nvim
-      gruber-darker-nvim
-      nvim-lspconfig
+      solarized-nvim
       conform-nvim
       lazydev-nvim
-      tabout-nvim
+      gruvbox-material
+      nvim-lspconfig
       (nvim-treesitter.withPlugins (p: [
         p.tree-sitter-rust
         p.tree-sitter-lua

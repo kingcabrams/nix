@@ -3,8 +3,8 @@ local o = vim.o
 o.splitright = true
 o.splitbelow = true
 
-o.number = true
-o.relativenumber = true
+o.number = false
+o.relativenumber = false
 
 o.undofile = true
 
