@@ -3,8 +3,8 @@ local o = vim.o
 o.splitright = true
 o.splitbelow = true
 
-o.number = false
-o.relativenumber = false
+o.number = true
+o.relativenumber = true
 
 o.undofile = true
 
@@ -16,4 +16,6 @@ o.ignorecase = true
 o.smartcase = true
 
 o.inccommand = "split"
-o.scrolloff = 5
+o.scrolloff = 8
+
+o.wildmenu = true

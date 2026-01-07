@@ -4,19 +4,14 @@
 
   programs.neovim = {
     enable = true;
-    viAlias = true;
-    vimAlias = true;
 
     withPython3 = true;
 
     plugins = with pkgs.vimPlugins; [
-      zenburn
       fzf-lua
       oil-nvim
-      solarized-nvim
       conform-nvim
       lazydev-nvim
-      gruvbox-material
       nvim-lspconfig
       (nvim-treesitter.withPlugins (p: [
         p.tree-sitter-rust

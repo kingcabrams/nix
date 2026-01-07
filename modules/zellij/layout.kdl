@@ -1,35 +1,51 @@
 layout {
-    default_tab_template {
-        children
-        pane size=1 borderless=true {
-            plugin location="file:@zjstatus@" {
-                format_left   "{mode} #[fg=#89B4FA,bold]{session}"
-                format_center "{tabs}"
-                format_right  "{command_git_branch} {datetime}"
-                format_space  ""
+    pane size=1 borderless=true {
+        plugin location="file:@zjstatus@" {
+            format_left   "{mode} #[fg=#89B4FA,bold]{session}"
+            format_center "{tabs}"
+            format_right  "{command_git_branch} {datetime}"
+            format_space  ""
 
-                border_enabled  "false"
-                border_char     "─"
-                border_format   "#[fg=#6C7086]{char}"
-                border_position "top"
+            border_enabled  "false"
+            border_char     "─"
+            border_format   "#[fg=#6C7086]{char}"
+            border_position "top"
 
-                hide_frame_for_single_pane "true"
+            mode_normal        "#[bg=#89B4FA] "  // Blue - default/home
+            mode_tmux          "#[bg=#FAB387] "  // Orange - compatibility mode
 
-                mode_normal  "#[bg=blue] "
-                mode_tmux    "#[bg=#ffc387] "
+            // Navigation & Movement
+            mode_scroll        "#[bg=#74C7EC] "  // Sky blue - scrolling through content
+            mode_pane          "#[bg=#89DCEB] "  // Cyan - switching panes
+            mode_tab           "#[bg=#B4BEFE] "  // Lavender - tab level
 
-                tab_normal   "#[fg=#6C7086] {name} "
-                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+            // Search & Input
+            mode_enter_search  "#[bg=#A6E3A1] "  // Green - starting search
+            mode_search        "#[bg=#A6E3A1] "  // Green - active search
+            mode_rename_tab    "#[bg=#94E2D5] "  // Teal - typing new name
+            mode_rename_pane   "#[bg=#94E2D5] "  // Teal - typing new name
+            mode_prompt        "#[bg=#A6E3A1] "  // Green - prompting for input
 
-                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                command_git_branch_format      "#[fg=blue] {stdout} "
-                command_git_branch_interval    "10"
-                command_git_branch_rendermode  "static"
+            // Structural Changes
+            mode_resize        "#[bg=#F9E2AF] "  // Yellow - resizing layout
+            mode_move          "#[bg=#F5C2E7] "  // Pink - moving things around
 
-                datetime        "#[fg=#6C7086,bold] {format} "
-                datetime_format "%a %b %d, %r"
-                datetime_timezone "America/New_York"
-            }
+            // Meta/Special
+            mode_session       "#[bg=#CBA6F7] "  // Purple - session control
+            mode_locked        "#[bg=#F38BA8] "  // Red - locked/restricted
+
+            tab_normal   "#[fg=#6C7086] {name} "
+            tab_active   "#[fg=#9399B2,bold,italic] {name} "
+
+            command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+            command_git_branch_format      "#[fg=blue] {stdout} "
+            command_git_branch_interval    "10"
+            command_git_branch_rendermode  "static"
+
+            datetime        "#[fg=#6C7086,bold] {format} "
+            datetime_format "%a %b %d, %r"
+            datetime_timezone "America/New_York"
         }
     }
+    pane
 }

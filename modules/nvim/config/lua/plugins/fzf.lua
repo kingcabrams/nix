@@ -1,16 +1,9 @@
-require("fzf-lua").setup({
-	"ivy",
-	files = {
-		git_icons = true,
-	},
+require('fzf-lua').setup({
+    winopts = {
+        split = "belowright 8new",
+    },
 })
 
-vim.keymap.set("n", "<leader>f", function()
-	FzfLua.files()
-end)
-vim.keymap.set("n", "<leader>/", function()
-	FzfLua.live_grep()
-end)
-vim.keymap.set("n", "<leader>;", function()
-	FzfLua.buffers()
+vim.keymap.set("n", "<C-p>", function()
+    FzfLua.files()
 end)
