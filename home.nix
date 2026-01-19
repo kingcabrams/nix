@@ -8,6 +8,7 @@
     ./modules/nvim
     ./modules/zellij
     ./modules/starship
+    ./modules/ghostty
   ];
 
   nix = {
@@ -73,7 +74,6 @@
     bat
     procs
     direnv
-    ghostty
     ripgrep
     vesktop
     man-pages
