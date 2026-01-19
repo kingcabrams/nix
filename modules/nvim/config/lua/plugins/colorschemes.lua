@@ -1,1 +1,1 @@
-vim.cmd('colorscheme xoria256')
+vim.cmd('colorscheme tokyonight-night')

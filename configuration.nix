@@ -15,6 +15,17 @@
     powerOnBoot = true;
   };
 
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      settings = {
+        main = {
+          capslock = "overload(control, esc)";
+        };
+      };
+    };
+  };
+
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -32,20 +43,18 @@
 
   services.xserver.enable = true;
 
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+
+  services.gnome.core-apps.enable = true;
+  services.gnome.core-developer-tools.enable = false;
+  services.gnome.games.enable = false;
+  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
 
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-    options = "caps:ctrl_modifier";
   };
 
   # Enable CUPS to print documents.
@@ -74,7 +83,6 @@
     ];
     shell = pkgs.fish;
     packages = with pkgs; [
-      kdePackages.kate
     ];
   };
 

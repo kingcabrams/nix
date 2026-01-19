@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("i", "{", function()
 			local node = TS.get_node()
 
-			if node and node:type() == "if_statement" then
+			if node and (node:type() == "if_statement" or node:type() == "for_statement" or node:type() == "while_statement") then
 				local row = api.nvim_win_get_cursor(0)[1]
 				local _, col, _ = node:start()
 

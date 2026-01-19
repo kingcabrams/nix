@@ -1,19 +1,30 @@
-local key = vim.keymap
+local set = vim.keymap.set
 
-key.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-key.set("n", "<C-d>", "<C-d>zz")
-key.set("n", "<C-u>", "<C-u>zz")
-key.set("n", "n", "nzzzv")
-key.set("n", "N", "Nzzzv")
+set("n", "<C-d>", "<C-d>zz")
+set("n", "<C-u>", "<C-u>zz")
+set("n", "n", "nzzzv")
+set("n", "N", "Nzzzv")
 
-key.set("v", ">", ">gv")
-key.set("v", "<", "<gv")
+set("v", ">", ">gv")
+set("v", "<", "<gv")
 
-key.set("n", "<leader>t", "<CMD>split | term<CR>i")
-key.set("t", "<esc>", "<C-\\><C-n>")
+set("n", "<C-h>", "<C-w>h")
+set("n", "<C-j>", "<C-w>j")
+set("n", "<C-k>", "<C-w>k")
+set("n", "<C-l>", "<C-w>l")
 
-key.set("n", "<C-h>", "<C-w>h")
-key.set("n", "<C-j>", "<C-w>j")
-key.set("n", "<C-k>", "<C-w>k")
-key.set("n", "<C-l>", "<C-w>l")
+set("n", "<A-m>", "<CMD>make<CR>")
+
+set("n", "'", "`")
+set("v", "<leader>y", "\"+y")
+set("v", "<leader>Y", "\"+y'>")
+set("v", "<leader>p", "\"+p")
+set("v", "Y", "y'>")
+
+set("v", "K", ":m '<-2<CR>gv=gv")
+set("v", "J", ":m '>+1<CR>gv=gv")
+
+set("n", "<C-a>", "ggVG")
+set({"n", "v"}, "<C-h>", ":s/")

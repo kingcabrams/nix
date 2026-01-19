@@ -16,6 +16,6 @@ o.ignorecase = true
 o.smartcase = true
 
 o.inccommand = "split"
-o.scrolloff = 8
+o.scrolloff = 4
 
-o.wildmenu = true
+o.guicursor = ""

@@ -3,6 +3,7 @@ vim.lsp.enable({
 	"clangd",
 	"lua_ls",
 	"rust_analyzer",
+	"ols",
 })
 
 require("conform").setup({
@@ -13,6 +14,12 @@ require("conform").setup({
 		cpp = { "clang_format" },
 		nix = { "nixfmt" },
 		lua = { "stylua" },
+	},
+})
+
+vim.filetype.add({
+	extension = {
+		h = "c",
 	},
 })
 
